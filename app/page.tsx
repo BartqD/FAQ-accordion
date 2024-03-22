@@ -1,95 +1,75 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import { Fragment, useState } from 'react'
+import classes from './page.module.scss'
+import Image from 'next/image'
+
+import { faqData } from '@/data/faqData'
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	const [activeId, setActiveId] = useState<string | null>(null)
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+	const toggleAccordion = (id: string) => {
+		setActiveId(activeId === id ? null : id)
+	}
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+	const isAccordionOpen = (id: string) => {
+		return activeId === id
+	}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+	return (
+		<Fragment>
+			<main>
+				<section className={classes['faq-section']}>
+					<div className={classes['faq-container']}>
+						<div className={classes['faq-header']}>
+							<Image
+								className={classes['faq-header__img']}
+								src={'images/icon-star.svg'}
+								alt='Star image'
+								width={24}
+								height={24}></Image>
+							<h1 className={classes['faq-header__title']}>FAQs</h1>
+						</div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+						<div className={classes['faq-content']}>
+							{faqData.map(faq => (
+								<Fragment key={faq.id}>
+									<div className={classes['faq-content__item']}>
+										<button className={classes['faq-content__question']} onClick={() => toggleAccordion(faq.id)}>
+											<h2 className={classes['faq-content__question-title']}>{faq.question}</h2>
+											<Image
+												className={classes['faq-content__question-icon']}
+												src={isAccordionOpen(faq.id) ? '/images/icon-minus.svg' : '/images/icon-plus.svg'}
+												alt='Toggle Icon'
+												width={30}
+												height={30}
+											/>
+										</button>
+										<div
+											className={`${classes['faq-content__answer']} ${
+												isAccordionOpen(faq.id)
+													? classes['faq-content__answer-open']
+													: classes['faq-content__answer-close']
+											}`}>
+											<p className={classes['faq-content__answer-text']}>{faq.answer}</p>
+										</div>
+									</div>
+									<hr />
+								</Fragment>
+							))}
+						</div>
+					</div>
+				</section>
+			</main>
+			<footer>
+				<div className={classes.footer}>
+					Challenge by{' '}
+					<a href='https://www.frontendmentor.io?ref=challenge' target='_blank'>
+						Frontend Mentor
+					</a>
+					. Coded by <a href='https://github.com/BartqD' target='_blank'>Bartosz</a>.
+				</div>
+			</footer>
+		</Fragment>
+	)
 }
