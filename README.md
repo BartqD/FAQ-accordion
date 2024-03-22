@@ -52,8 +52,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ### Links
 
-- Solution URL: []()
-- Live Site URL: []()
+- [Solution URL:](https://github.com/BartqD/FAQ-accordion)
+- [Live Site URL:](https://faq-accordion-flame-eight.vercel.app/)
 
 ### Built with
 

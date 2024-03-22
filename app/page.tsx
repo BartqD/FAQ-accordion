@@ -36,7 +36,7 @@ export default function Home() {
 								<Fragment key={faq.id}>
 									<div className={classes['faq-content__item']}>
 										<button className={classes['faq-content__question']} onClick={() => toggleAccordion(faq.id)}>
-											<h2 className={classes['faq-content__question-title']}>{faq.question}</h2>
+											<p className={classes['faq-content__question-title']}>{faq.question}</p>
 											<Image
 												className={classes['faq-content__question-icon']}
 												src={isAccordionOpen(faq.id) ? '/images/icon-minus.svg' : '/images/icon-plus.svg'}
