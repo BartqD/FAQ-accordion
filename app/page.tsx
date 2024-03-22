@@ -65,9 +65,15 @@ export default function Home() {
 				<div className={classes.footer}>
 					Challenge by{' '}
 					<a href='https://www.frontendmentor.io?ref=challenge' target='_blank'>
+						{' '}
+						<span>➜</span>
 						Frontend Mentor
 					</a>
-					. Coded by <a href='https://github.com/BartqD' target='_blank'>Bartosz</a>.
+					. Coded by{' '}
+					<a href='https://github.com/BartqD' target='_blank'>
+						<span>➜</span>Bartosz
+					</a>
+					.
 				</div>
 			</footer>
 		</Fragment>

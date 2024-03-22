@@ -91,6 +91,7 @@
 	&__question-title {
 		text-align: left;
 		color: #301534;
+		font-weight: 600;
 		font-size: 1.6rem;
 		margin-right: 2.4em;
 	}
@@ -121,8 +122,12 @@
 	a {
 		position: relative;
 		text-decoration: none;
+		font-weight: bold;
 		color: hsl(228, 45%, 44%);
 		transition: text-decoration 0.5s ease-in-out;
+		span{
+			margin-right: 0.5em;
+		}
 	}
 	a::after {
 		content: '';
